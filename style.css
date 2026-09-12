@@ -1,0 +1,403 @@
+/* ==========================================================================
+   DEVELOPER THEME: Core Variables (Matte Dark, No Glows)
+   ========================================================================== */
+:root {
+  --bg-base: #0d1117;
+  --bg-surface: #161b22;
+  --bg-surface-hover: #21262d;
+
+  --border-subtle: #30363d;
+  --border-active: #58a6ff;
+
+  --text-main: #c9d1d9;
+  --text-muted: #8b949e;
+
+  --syntax-keyword: #ff7b72;
+  --syntax-string: #a5d6ff;
+  --syntax-comment: #8b949e;
+  --syntax-success: #3fb950;
+  --syntax-accent: #58a6ff;
+
+  --font-sans: "Inter", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, monospace;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   EXOTIC LAYOUT: Split Screen Hub
+   ========================================================================== */
+.hub-layout {
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Left Sidebar: Sticky Terminal Panel */
+.dev-sidebar {
+  flex: 0 0 35%;
+  background-color: var(--bg-base);
+  border-right: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  z-index: 10;
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 3rem;
+}
+
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.control.close {
+  background-color: #ff5f56;
+}
+.control.minimize {
+  background-color: #ffbd2e;
+}
+.control.maximize {
+  background-color: #27c93f;
+}
+
+.sidebar-content {
+  margin-top: auto;
+  margin-bottom: 2rem;
+}
+.dev-sidebar h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin: 1rem 0 0.5rem 0;
+  color: var(--text-main);
+}
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Terminal Typography */
+.terminal-prompt,
+.term-output {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+.term-user {
+  color: var(--syntax-success);
+}
+.term-dir {
+  color: var(--syntax-accent);
+}
+.mt-large {
+  margin-top: 2.5rem;
+}
+.term-output.success {
+  color: var(--syntax-success);
+  margin-top: 0.5rem;
+}
+.term-output.pending {
+  color: var(--text-muted);
+}
+
+/* Right Area: Scrolling Map Container */
+.map-view {
+  flex: 1;
+  background-color: #0a0d12;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#d3-map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* ==========================================================================
+   NODE CARDS (HTML Overlays rendered by D3)
+   ========================================================================== */
+.node-card {
+  position: relative;
+  display: block;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  width: 320px;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.node-card.active {
+  border-color: var(--border-active);
+  cursor: pointer;
+}
+.node-card.active:hover {
+  background: var(--bg-surface-hover);
+}
+/* Update this block in style.css */
+.node-card.locked {
+  background: var(--bg-surface); /* Solid background to block the SVG line */
+  border-style: dashed;
+  cursor: not-allowed;
+}
+
+/* Dim the content instead of the whole card so the background remains opaque */
+.node-card.locked > * {
+  opacity: 0.5;
+}
+
+.node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.node-index {
+  color: var(--syntax-accent);
+}
+.string {
+  color: var(--syntax-string);
+}
+.comment {
+  color: var(--syntax-comment);
+}
+
+.node-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+.node-action {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--syntax-success);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   DOCUMENT/ARTICLE STYLES (project-plan.html)
+   ========================================================================== */
+.nav-bar {
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: var(--font-mono);
+}
+.back-link {
+  display: inline-block;
+  color: var(--syntax-keyword);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+
+header.site-header {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 2rem;
+}
+header.site-header h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.header-meta p {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+.header-meta a {
+  color: var(--syntax-accent);
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+.document-section {
+  margin-bottom: 4rem;
+}
+
+h2 {
+  color: var(--syntax-accent);
+  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+h3 {
+  font-size: 1.3rem;
+  margin: 2rem 0 1rem;
+  color: var(--text-main);
+}
+h4 {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 1rem;
+  color: var(--text-main);
+}
+h5 {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--syntax-keyword);
+  margin: 1.5rem 0 0.5rem;
+  text-transform: uppercase;
+}
+
+p,
+li {
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+a {
+  color: var(--syntax-accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+ul,
+ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 2rem 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th,
+td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+}
+th {
+  background-color: rgba(255, 255, 255, 0.02);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-weight: normal;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+.transparent-image {
+  display: block;
+  max-width: 100%;
+  margin: 2rem auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  filter: invert(0.9) hue-rotate(180deg);
+}
+.full-width {
+  width: 100%;
+}
+
+.mockup-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.mockup-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+}
+.mockup-item img {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+}
+.mockup-item figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: var(--bg-surface);
+  padding: 2rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  margin-top: 2rem;
+}
+.legend-grid strong {
+  font-family: var(--font-mono);
+  color: var(--syntax-accent);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Handling */
+@media (max-width: 900px) {
+  .hub-layout {
+    flex-direction: column;
+  }
+  .dev-sidebar {
+    flex: none;
+    height: auto;
+    position: static;
+    padding: 2rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .map-view {
+    padding: 0;
+  }
+  .node-card {
+    width: 280px;
+  }
+}

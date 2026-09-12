@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Travelling Salesmen - Project Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body class="hub-layout">
+    <aside class="dev-sidebar">
+      <div class="window-controls">
+        <span class="control close"></span>
+        <span class="control minimize"></span>
+        <span class="control maximize"></span>
+      </div>
+      <div class="sidebar-content">
+        <div class="terminal-prompt">
+          <span class="term-user">admin@system</span>:<span class="term-dir"
+            >~/tsp-project</span
+          >$ ./run --map --engine=d3
+        </div>
+        <h1>The Travelling Salesmen</h1>
+        <p class="subtitle">System Architecture & Deployment Route</p>
+
+        <div class="terminal-prompt mt-large">
+          <span class="term-user">admin@system</span>:<span class="term-dir"
+            >~/tsp-project</span
+          >$ cat status.log
+        </div>
+        <p class="term-output success">> 1 Node compiled successfully.</p>
+        <p class="term-output pending">> 2 Nodes awaiting execution.</p>
+      </div>
+    </aside>
+
+    <main class="map-view">
+      <!-- D3 will render the SVG lines and HTML nodes inside this container -->
+      <div id="d3-map-container"></div>
+    </main>
+
+    <script>
+      // Node Data Array
+      const mapData = [
+        {
+          id: 1,
+          title: "Phase 1: Project Plan & Requirements",
+          state: "published",
+          num: "01",
+          url: "project-plan.html",
+          locked: false,
+        },
+        {
+          id: 2,
+          title: "[Unmapped_Segment_A]",
+          state: "// undefined",
+          num: "02",
+          url: "#",
+          locked: true,
+        },
+        {
+          id: 3,
+          title: "[Unmapped_Segment_B]",
+          state: "// undefined",
+          num: "03",
+          url: "#",
+          locked: true,
+        },
+      ];
+
+      function renderMap() {
+        const container = d3.select("#d3-map-container");
+        container.selectAll("*").remove(); // Clear previous render on resize
+
+        const width = container.node().getBoundingClientRect().width;
+        const verticalSpacing = 240;
+        const height = mapData.length * verticalSpacing + 100;
+        const isMobile = width < 768;
+
+        // Calculate x/y positions based on screen size
+        const nodes = mapData.map((d, i) => {
+          const isLeft = i % 2 === 0;
+          const x = isMobile ? width / 2 : isLeft ? width * 0.25 : width * 0.75;
+          const y = 120 + i * verticalSpacing;
+          return { ...d, x, y };
+        });
+
+        // Inject intermediate waypoints to create an erratic, "Travelling Salesman" route
+        const routePoints = [];
+        nodes.forEach((node, i) => {
+          routePoints.push({ x: node.x, y: node.y });
+
+          // If there's a next node, plot a curious jagged path to get there
+          if (i < nodes.length - 1) {
+            const nextNode = nodes[i + 1];
+            const midY = (node.y + nextNode.y) / 2;
+
+            // Create an offset point that pulls the line in an unexpected direction
+            const offset = isMobile ? 0 : i % 2 === 0 ? 120 : -120;
+            const midX = width / 2 + offset;
+
+            routePoints.push({ x: midX, y: midY });
+          }
+        });
+
+        // 1. Setup SVG Layer (Background)
+        const svg = container
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .style("position", "absolute")
+          .style("top", 0)
+          .style("left", 0)
+          .style("z-index", 1);
+
+        // Use d3.curveLinear for sharp, literal point-to-point lines
+        const lineGenerator = d3
+          .line()
+          .x((d) => d.x)
+          .y((d) => d.y)
+          .curve(d3.curveLinear);
+
+        // Draw the connecting path
+        svg
+          .append("path")
+          .datum(routePoints)
+          .attr("d", lineGenerator)
+          .attr("fill", "none")
+          .attr("stroke", "#30363d") // matches --border-subtle
+          .attr("stroke-width", 2)
+          .attr("stroke-dasharray", "4,4");
+
+        // Draw waypoints as small "cities" on the route (optional detail)
+        svg
+          .selectAll(".waypoint")
+          .data(
+            routePoints.filter(
+              (p) => !nodes.find((n) => n.x === p.x && n.y === p.y),
+            ),
+          )
+          .enter()
+          .append("circle")
+          .attr("cx", (d) => d.x)
+          .attr("cy", (d) => d.y)
+          .attr("r", 4)
+          .attr("fill", "#30363d");
+
+        // 2. Setup HTML Layer (Foreground)
+        const overlay = container
+          .append("div")
+          .style("position", "absolute")
+          .style("top", 0)
+          .style("left", 0)
+          .style("width", "100%")
+          .style("height", "100%")
+          .style("z-index", 2);
+
+        // Append cards absolutely positioned precisely over the SVG coordinates
+        const cards = overlay
+          .selectAll(".node-wrapper")
+          .data(nodes)
+          .enter()
+          .append("div")
+          .attr("class", "node-wrapper")
+          .style("position", "absolute")
+          .style("left", (d) => `${d.x}px`)
+          .style("top", (d) => `${d.y}px`)
+          .style("transform", "translate(-50%, -50%)");
+
+        // Inject the card HTML
+        cards.each(function (d) {
+          const el = d3.select(this);
+          if (d.locked) {
+            el.html(`
+                        <div class="node-card locked">
+                            <div class="node-header">
+                                <span class="node-index">${d.num}</span>
+                                <span class="node-tag comment">${d.state}</span>
+                            </div>
+                            <h2 class="node-title">${d.title}</h2>
+                            <p class="node-action text-muted">Awaiting parameters...</p>
+                        </div>
+                    `);
+          } else {
+            el.html(`
+                        <a href="${d.url}" class="node-card active">
+                            <div class="node-header">
+                                <span class="node-index">${d.num}</span>
+                                <span class="node-tag string">"${d.state}"</span>
+                            </div>
+                            <h2 class="node-title">${d.title}</h2>
+                            <p class="node-action">Click to initialize →</p>
+                        </a>
+                    `);
+          }
+        });
+      }
+
+      // Initialize and handle window resizing
+      window.addEventListener("resize", renderMap);
+      renderMap();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phase 1: Project Plan - The Travelling Salesmen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="nav-bar">
+      <a href="index.html" class="back-link">← Back to Map</a>
+    </div>
+
+    <header class="site-header">
+      <h1>[Project Name] The Travelling Salesmen</h1>
+      <div class="header-meta">
+        <p style="font-style: italic; opacity: 0.5">
+          The place holder project name is intended.
+        </p>
+        <p>
+          <strong>Team:</strong> Amante, lan Emmanuel B. | Deananeas, Art
+          Gandalf D. | Zabala, Rohan Miguel M.
+        </p>
+        <p><strong>For:</strong> Condura Express Service QC INC</p>
+        <p><strong>To:</strong> CS 191WFR1 Ligaya Leah Figueroa</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="document-section">
+        <h2>I. Customer Statement of Requirements</h2>
+
+        <h3>Introduction and Background</h3>
+        <h4>Background and Motivation</h4>
+        <p>
+          Condura Express Service QC Inc. has been repairing, cleaning, and
+          installing air conditioning units around Quezon City, Marikina, and
+          the entirety of Rizal since 1983. Its owner runs the business'
+          day-to-day operations with the help of two (2) admin assistants and
+          twelve to fourteen (12-14) field technicians.
+        </p>
+        <p>
+          A large share of their bookings don't come from them directly-rather,
+          they come through Carrier, the aircon brand Condura services as a
+          partner. Customers living within Condura's coverage area that books a
+          service through Carrier's site may be routed to Condura as a new job
+          to carry out. There's even talk about a "Carrier app" for the business
+          to manage these kinds of bookings. It's a steady pipeline, but not one
+          that fits Condura.
+        </p>
+        <p>
+          A portion of their bookings come to them directly, either by means of
+          telephone calls, emails, or Facebook Messenger inquiries. The admin
+          assistant is the one responsible for consolidating these separate lead
+          channels into a master excel file and, ultimately, a single dispatch
+          queue. Human-dependent centralization in an essentially decentralized
+          system is a loss for everyone. Expecting a team member to do the
+          menial task of reconciling incompatible platforms is a waste of human
+          potential and unsustainable drain on human energy-one that inevitably
+          breeds fatigue and opens the door to oversight, no matter how diligent
+          they are.
+        </p>
+        <p>
+          During most months, this is bearable. Peak months, however, tell a
+          different story. Summer (March through May) are Condura's busiest
+          months and exposes how little slack the current system has. These
+          inefficiencies are not mere operational friction on paper; they have
+          concrete consequences for the business, directly translating to the
+          loss of a potential customer to a faster competitor.
+        </p>
+        <p>
+          This operational reality highlights the genuine necessity of a
+          dedicated software solution. Digitization here is not a matter of tech
+          vanity or following the cliche that "every business needs a business
+          app." Rather, it's a critical operational tool that will allow them to
+          relieve human effort from manual intake, safeguards customer leads,
+          and survive under the load of their own peak season.
+        </p>
+
+        <h4>The Problem</h4>
+        <p>
+          Here's what a single job looks like on a daily basis, from the moment
+          a customer wants service to the moment the paperwork is closed out.
+        </p>
+        <p>
+          The admin assistant checks what came through Carrier's website, picks
+          up the ringing phone, looks at emails, or reads Facebook messages.
+          Phone inquiries require jotting down the details on a piece of paper
+          and typing them into a master Excel sheet. Digital inquiries aren't
+          any better, the assistant must still manually copy them from the
+          source and re-enter them in the same spreadsheet.
+        </p>
+        <p>
+          Once all of the day's jobs are sitting in the spreadsheet, the admin
+          assistant prints this and cuts them into stubs. Someone with years on
+          the job-not some rule written in a rulebook-decides who goes where.
+          This is not a criticism of Condura's way of doing things; it's a
+          description of how much their scheduling currently exists only in a
+          couple of people's heads.
+        </p>
+        <p>
+          The stubs are then handed over to their respective technicians. Once
+          these technicians head out, the main office loses live visibility:
+          cell signals in parts of Condura's coverage area are spotty and
+          unreliable. Admin staff end up calling technicians repeatedly
+          throughout the day just to find out where they are and whether they've
+          arrived.
+        </p>
+        <p>
+          When the job is done, the technician writes up a document called
+          'trouble call report' which details what unfolded during the job. The
+          trouble report is then logged into their current system and, if it was
+          booked via Carrier, will also be typed up on the partner company's
+          site.
+        </p>
+        <p>
+          When you add it up, a single job passes through Condura's hands as
+          data at least four (4) times and each time is someone retyping or
+          repackaging data that has already been recorded. That's where paper
+          waste comes from and is exactly where errors originate-a transposed
+          phone number, a mis-heard address, a lost stub, accidental corruption
+          of spreadsheet entries. The fault for these problems does not lie
+          within the workers, but within the decentralized nature of the system
+          in place.
+        </p>
+        <p>
+          None of this scales gracefully: the busier the business gets, the more
+          calls, the more jotted down notes, the more spreadsheet rows, the more
+          paper stubs, and the more the entire pipeline becomes prone to error.
+        </p>
+
+        <h4>The Current Workflow</h4>
+        <p>
+          The flowchart diagram below is what the team derived and the client
+          approved from the meeting in regards to how they do their business
+          today.
+        </p>
+        <img
+          src="workflow-chart.png"
+          alt="Current Workflow Chart"
+          class="transparent-image"
+        />
+
+        <h4>Tools and Existing Solutions</h4>
+        <p>
+          Condura's situation isn't unique. As a matter of fact, this
+          combination of problems-rudimentary excel-based record systems, paper
+          scheduling, no live technician visibility-is common enough in
+          home-service businesses that an entire category of software already
+          exists to address it. They are usually called Field Service Management
+          (FSM) software and none of them will be adapted wholesale for this
+          project. However, each will be useful as a reference point for what a
+          mature version of this system looks like.
+        </p>
+        <ul class="clean-list">
+          <li>
+            <strong>Zuper</strong> - an Al-powered FSM platform built for HVAC
+            dispatching businesses, covering scheduling, technician dispatch,
+            analytics, and even optimized route handling. (<a
+              href="https://www.zuper.co/hvac-dispatching-software"
+              target="_blank"
+              >https://www.zuper.co/hvac-dispatching-software</a
+            >)
+          </li>
+          <li>
+            <strong>Housecall pro</strong> - also has a software solution
+            dedicated for HVAC dispatching businesses, with features like
+            scheduling, routing techs by location, estimating and quoting, as
+            well as invoicing, and a Customer Relation Management (CRM)
+            component. They also have a mobile app for technicians. (<a
+              href="https://www.housecallpro.com/industries/hvac-software/"
+              target="_blank"
+              >https://www.housecallpro.com/industries/hvac-software/</a
+            >)
+          </li>
+        </ul>
+
+        <h4>Why not just them?</h4>
+        <p>
+          While the software solutions mentioned above and others in the same
+          category seem promising to solve Condura's issues, they all have their
+          caveats with respect to our clients. Aside from the high price point
+          they set for subscriptions or less than satisfactory free-tier limits,
+          they contain substantially more features than the client
+          prefers-feature bloat from their perspective. These apps also don't
+          take into consideration their workflow as well as their need for
+          automatic consolidation from multiple lead channels.
+        </p>
+
+        <h4>Requirements</h4>
+        <p>
+          This section will enumerate and discuss requirements-what the user
+          should be able to do and what the software does on its own.
+        </p>
+
+        <h5>Admin Assistant</h5>
+        <ol>
+          <li>
+            Log a new job request (either from (1) phone calls, (2) emails, and
+            (3) facebook inquiries) directly into the system, skipping the
+            paper-excel entry workflow altogether.
+          </li>
+          <li>
+            See a single dashboard of today's jobs with urgent or unassigned
+            jobs called out early.
+          </li>
+          <li>
+            Look up customer details without digging through a spreadsheet.
+          </li>
+          <li>Assign jobs to technicians and reassign later if need be.</li>
+          <li>See a job's status and details.</li>
+          <li>Message technicians directly through the system.</li>
+          <li>
+            View a simple monthly analytics (to be specified by the client) with
+            option to select various timeframes.
+          </li>
+          <li>
+            Order jobs by route either manually or by the software's recommended
+            heurestic.
+          </li>
+          <li>
+            (automatic) Log booking from Carrier's website directly to the
+            system.
+          </li>
+          <li>
+            (automatic) System flags same day jobs that are un-assigned to the
+            top of the list
+          </li>
+        </ol>
+
+        <h5>Technician</h5>
+        <ol>
+          <li>View today's assigned jobs and details about it.</li>
+          <li>See jobs ordered by route.</li>
+          <li>
+            Message the admin from the app directly for questions or delays.
+          </li>
+          <li>Get pinged for job changes.</li>
+          <li>
+            Mark the job's status as arrived, completed, or something else with
+            one tap or a selection respectively.
+          </li>
+          <li>Submit a trouble call report directly through their phones.</li>
+        </ol>
+
+        <h5>Customer</h5>
+        <ol>
+          <li>Book a service directly without waiting on a phone call.</li>
+          <li>Provide the jobs basic details through a short form.</li>
+          <li>Get confirmation that their application went through.</li>
+        </ol>
+        <p>
+          Features such as invoicing, quotation, and technician-to-technician
+          messaging are out of scope. Implementation of map features is still
+          under consideration.
+        </p>
+
+        <h4>Preliminary UI Design</h4>
+        <h5>User Navigation</h5>
+        <p>
+          A customer lands on a short request form, inputs their details, picks
+          what they need, and submits it-no account or login required.
+        </p>
+        <p>
+          An admin assistant logs in to the dashboard showing today's jobs. From
+          there they can:
+        </p>
+        <ul class="clean-list">
+          <li>
+            Click the new job request button to open an entry form for a phone,
+            Facebook, or email booking, filling it in, saving the job, and
+            automatically redirecting back to the dashboard, now showing the new
+            job.
+          </li>
+          <li>
+            Click an existing job to see its details or click edit and
+            manipulate it. While in there, they can also click the name of the
+            technician assigned to send a message.
+          </li>
+          <li>Rearrange the jobs.</li>
+          <li>
+            Click the message icon and select which technician to message.
+          </li>
+          <li>Assign jobs by a drop down selection.</li>
+          <li>
+            Click the Analytics button to show monthly/any timeframe analytics.
+          </li>
+        </ul>
+        <p>
+          A technician logs in to their own personal dashboard showing today's
+          jobs and works down their route in order. For each stop, they mark
+          their status. Indicating a finished job redirects them to the Submit
+          Trouble Report screen which they can either fill up now and submit or
+          defer to later. To access the Submit Trouble Report that was deferred,
+          they simply need to tap the finished job and click the Submit Trouble
+          Report button.
+        </p>
+
+        <h5>Screen Mockups</h5>
+        <div class="mockup-gallery">
+          <figure class="mockup-item">
+            <img
+              src="mockup-customer-form.png"
+              alt="Customer Booking Form"
+              class="transparent-image"
+            />
+            <figcaption>Customer Booking Form</figcaption>
+          </figure>
+          <figure class="mockup-item">
+            <img
+              src="mockup-customer-confirmation.png"
+              alt="Customer Booking Confirmation"
+              class="transparent-image"
+            />
+            <figcaption>Customer Booking Confirmation</figcaption>
+          </figure>
+          <figure class="mockup-item">
+            <img
+              src="mockup-admin-dashboard.png"
+              alt="Admin Dashboard"
+              class="transparent-image"
+            />
+            <figcaption>Admin Dashboard</figcaption>
+          </figure>
+          <figure class="mockup-item">
+            <img
+              src="mockup-admin-new-job.png"
+              alt="Admin New Job Request Form"
+              class="transparent-image"
+            />
+            <figcaption>Admin New Job Request Form</figcaption>
+          </figure>
+          <figure class="mockup-item">
+            <img
+              src="mockup-technician-dashboard.png"
+              alt="Technician Dashboard"
+              class="transparent-image"
+            />
+            <figcaption>Technician Dashboard</figcaption>
+          </figure>
+          <figure class="mockup-item">
+            <img
+              src="mockup-trouble-report.png"
+              alt="Trouble Call Report Form"
+              class="transparent-image"
+            />
+            <figcaption>Trouble Call Report Form</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="document-section">
+        <h2>II. Plan of Work</h2>
+
+        <h3>Estimate cost and resources</h3>
+        <h4>a. People and Time</h4>
+        <p>
+          The team consists of three student developers who will work part-time
+          alongside coursework for the entire duration of the term. No monetary
+          compensation is budgeted given that this is a course-based engagement.
+          We estimate person-hours instead as the primary "cost."
+        </p>
+
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>Team Member</th>
+              <th>Role</th>
+              <th>Primary Responsibility</th>
+              <th>Est. Weekly Commitment</th>
+            </tr>
+            <tr>
+              <td>Amante, lan Emmanuel B.</td>
+              <td>Full-stack Developer / Integrations Lead</td>
+              <td>Customer intake & Carrier partner integration</td>
+              <td>15-18 hrs/week</td>
+            </tr>
+            <tr>
+              <td>Deananeas, Art Gandalf</td>
+              <td>Full-stack Developer / Backend Lead</td>
+              <td>Dispatch & scheduling engine, admin dashboard</td>
+              <td>15-18 hrs/week</td>
+            </tr>
+            <tr>
+              <td>Zabala, Rohan Miguel</td>
+              <td>Full-stack Developer / Mobile Lead</td>
+              <td>Technician mobile app & trouble-report module</td>
+              <td>15-18 hrs/week</td>
+            </tr>
+          </table>
+        </div>
+
+        <h4>b. Estimation Technique 1 - Process-based Estimation</h4>
+        <p>
+          We distributed total estimated effort across the five generic software
+          process framework activities (Communication, Planning, Modeling,
+          Construction, Deployment), following the typical percentage splits
+          used for small, well-understood information-management projects.
+        </p>
+
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>SE Framework Activity</th>
+              <th>% of Effort</th>
+              <th>Est. Person-Hours</th>
+              <th>Est. Duration</th>
+            </tr>
+            <tr>
+              <td>Communication</td>
+              <td>10%</td>
+              <td>~59 hrs</td>
+              <td>Weeks 1-2</td>
+            </tr>
+            <tr>
+              <td>Planning</td>
+              <td>8%</td>
+              <td>~47 hrs</td>
+              <td>Weeks 1-2</td>
+            </tr>
+            <tr>
+              <td>Modeling</td>
+              <td>17%</td>
+              <td>~100 hrs</td>
+              <td>Weeks 2-4</td>
+            </tr>
+            <tr>
+              <td>Construction</td>
+              <td>50%</td>
+              <td>~294 hrs</td>
+              <td>Weeks 4-12</td>
+            </tr>
+            <tr>
+              <td>Deployment</td>
+              <td>15%</td>
+              <td>~88 hrs</td>
+              <td>Weeks 13-16</td>
+            </tr>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td><strong>100%</strong></td>
+              <td><strong>~588 hrs</strong></td>
+              <td><strong>16 weeks</strong></td>
+            </tr>
+          </table>
+        </div>
+
+        <h4>c. Estimation Technique 2 - Problem-based (FP) Estimation</h4>
+        <p>
+          We derived an unadjusted function point count from the system's
+          anticipated inputs, outputs, inquiries, and data stores, based on the
+          workflow described in Section I.
+        </p>
+
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>Component Type</th>
+              <th>Count</th>
+              <th>Avg. Weight</th>
+              <th>FP Subtotal</th>
+            </tr>
+            <tr>
+              <td>External Inputs</td>
+              <td>6</td>
+              <td>4</td>
+              <td>24</td>
+            </tr>
+            <tr>
+              <td>External Outputs</td>
+              <td>5</td>
+              <td>5</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>External Inquiries</td>
+              <td>4</td>
+              <td>3</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Internal Logical Files</td>
+              <td>3</td>
+              <td>10</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>External Interface Files</td>
+              <td>7</td>
+              <td>1</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td><strong>Unadjusted Function Points</strong></td>
+              <td></td>
+              <td></td>
+              <td><strong>98</strong></td>
+            </tr>
+          </table>
+        </div>
+
+        <h4>d. System Resources</h4>
+        <p>
+          The system's minimum resource requirements, informed by Condura's
+          existing office setup and the spotty coverage described in the current
+          workflow are here below:
+        </p>
+
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>Resource</th>
+              <th>Minimum Requirement</th>
+            </tr>
+            <tr>
+              <td>Admin display</td>
+              <td>
+                Color display, minimum resolution 1280 x 720; modern browser
+                (Chrome, Edge, or Firefox latest 2 versions)
+              </td>
+            </tr>
+            <tr>
+              <td>Admin/office hardware</td>
+              <td>Windows 10+ or dual-core CPU equivalent, 4 GB RAM,</td>
+            </tr>
+            <tr>
+              <td>Technician mobile devices</td>
+              <td>
+                Android 8.0+ (priority platform, given majority local market
+                share); minimum 2 GB RAM, GPS-enabled
+              </td>
+            </tr>
+            <tr>
+              <td>Application server</td>
+              <td>
+                Cloud-hosted, min. 1 vCPU/2 GB RAM to start, horizontally
+                scalable for peak season (March-May)
+              </td>
+            </tr>
+            <tr>
+              <td>Database storage</td>
+              <td>
+                Min. 5 GB initial allocation for customer, job, and technician
+                records, with room to scale with job history
+              </td>
+            </tr>
+            <tr>
+              <td>Network bandwidth</td>
+              <td>
+                Min. 256 Kbps sustained for admin dashboard; mobile app must
+                support offline queuing and sync given the coverage area's
+                spotty cell signal
+              </td>
+            </tr>
+            <tr>
+              <td>Third-party dependency</td>
+              <td>
+                Carrier partner API/webhook access (credentials and
+                documentation to be requested from the client)
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Schedules and Milestones</h3>
+        <p>
+          The Gantt chart below lays out major work milestones across the
+          16-week duration, with markers corresponding to the table here:
+        </p>
+        <img
+          src="gantt-chart.png"
+          alt="Project Gantt Chart"
+          class="transparent-image full-width"
+        />
+
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>#</th>
+              <th>Milestone</th>
+              <th>Deliverable</th>
+              <th>Target Date</th>
+            </tr>
+            <tr>
+              <td>M1</td>
+              <td>SRS Approved</td>
+              <td>Signed-off Customer Statement of Requirements</td>
+              <td>Sep 28, 2026</td>
+            </tr>
+            <tr>
+              <td>M2</td>
+              <td>System Design Complete</td>
+              <td>Architecture diagram, ERD, UI wireframes</td>
+              <td>Oct 12, 2026</td>
+            </tr>
+            <tr>
+              <td>M3</td>
+              <td>Admin Dashboard MVP</td>
+              <td>Working intake + dispatch screens (internal demo)</td>
+              <td>Nov 16, 2026</td>
+            </tr>
+            <tr>
+              <td>M4</td>
+              <td>Technician Mobile App MVP</td>
+              <td>Job list, status update, offline sync</td>
+              <td>Nov 23, 2026</td>
+            </tr>
+            <tr>
+              <td>M5</td>
+              <td>Alpha Testing Complete</td>
+              <td>Internal QA pass on all modules</td>
+              <td>Dec 7, 2026</td>
+            </tr>
+            <tr>
+              <td>M6</td>
+              <td>UAT Sign-off</td>
+              <td>Condura staff acceptance of pilot build</td>
+              <td>Dec 28, 2026</td>
+            </tr>
+            <tr>
+              <td>M7</td>
+              <td>Final Demo & Submission</td>
+              <td>Deployed system, documentation, training</td>
+              <td>Jan 4, 2027</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Project metrics</h3>
+        <p>
+          We will track the following metrics throughout development to measure
+          project status and catch delays or quality problems early. Each was
+          chosen to correspond either to a specific risk in our Risk Table or to
+          the core business problem described in Section I.
+        </p>
+
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>Metric</th>
+              <th>Definition</th>
+              <th>Why We Chose It</th>
+            </tr>
+            <tr>
+              <td>Schedule variance</td>
+              <td>
+                (Actual milestone date planned milestone date), tracked per
+                milestone in the table above
+              </td>
+              <td>
+                Two risks in our risk table ("Development tasks take longer than
+                expected," "Team underestimates complexity") are both HIGH
+                probability
+              </td>
+            </tr>
+            <tr>
+              <td>Requirements volatility</td>
+              <td>
+                Number of changed/added requirements total baseline
+                requirements, measured after each client review
+              </td>
+              <td>
+                Directly tracks the "Client company will change requirements"
+                risk (MODERATE probability) identified in our risk table
+              </td>
+            </tr>
+            <tr>
+              <td>Defect density</td>
+              <td>
+                Defects found in testing estimated KLOC or function points,
+                tracked per module
+              </td>
+              <td>
+                Standard construction-phase quality indicator; helps us decide
+                which module needs another testing pass before UAT
+              </td>
+            </tr>
+            <tr>
+              <td>Data re-entry count</td>
+              <td>
+                Number of times a single job's data is manually retyped from
+                intake to close-out
+              </td>
+              <td>
+                The narrative documents the same job being re-entered at least 4
+                times today is a main pain point. Our target is 1
+              </td>
+            </tr>
+            <tr>
+              <td>Task completion time (usability)</td>
+              <td>
+                Average time for a technician to log a status update or submit a
+                trouble report in the app, measured during UAT
+              </td>
+              <td>
+                Addresses the HIGH-probability risk that "client staff may be
+                inexperienced with technology"
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Effort breakdown</h3>
+        <p>
+          Responsibilities are divided by module, with each member acting as
+          primary owner of the components most closely tied to their assigned
+          part of the workflow. All members share testing and integration duties
+          so no single point of failure exists if a member becomes unavailable.
+        </p>
+
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>Team Member</th>
+              <th>Module(s) Owned</th>
+              <th>Representative Classes / Components</th>
+            </tr>
+            <tr>
+              <td>Amante, lan Emmanuel B.</td>
+              <td>Customer Intake Module; Carrier Partner Integration</td>
+              <td>
+                LeadIntakeController, CarrierWebhookAdapter, Customer Record,
+                ContactChannelParser
+              </td>
+            </tr>
+            <tr>
+              <td>Deananeas, Art Gandalf</td>
+              <td>Dispatch & Scheduling Engine; Admin Web Dashboard</td>
+              <td>
+                DispatchScheduler, JobAssignmentEngine,
+                TechnicianAvailabilityService, Admin DashboardView
+              </td>
+            </tr>
+            <tr>
+              <td>Zabala, Rohan Miguel</td>
+              <td>Technician Mobile App; Trouble Report Module</td>
+              <td>
+                TechnicianJobView, Status UpdateSync, Offline Queue Manager,
+                TroubleReportForm, ReportExportService
+              </td>
+            </tr>
+            <tr>
+              <td>All members</td>
+              <td>Shared: QA/testing, code review, deployment, client demos</td>
+              <td>
+                Rotating peer code review on every pull request; joint
+                responsibility for integration testing across modules
+              </td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section class="document-section">
+        <h2>III. Project Risks</h2>
+
+        <h3>Risk Table</h3>
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>Risks</th>
+              <th>Category</th>
+              <th>Probability</th>
+              <th>Impact</th>
+              <th>RMMM</th>
+            </tr>
+            <tr>
+              <td>Client Company Drops the Project</td>
+              <td>BU</td>
+              <td>VERY LOW</td>
+              <td>1</td>
+              <td>
+                Have both parties (the dev team and the client) agree on a
+                contract to protect both parties. Additionally, periodically
+                reaffirm the client's commitment to the project and the
+                partnership.
+              </td>
+            </tr>
+            <tr>
+              <td>Client Company's Employees resist the software</td>
+              <td>SC</td>
+              <td>LOW</td>
+              <td>2</td>
+              <td>
+                Coordinate with the owner of the company to reconfirm readiness
+                of the employees to migrate to a new software for their
+                workflows. Include employee opinions for feedback during
+                development cycles
+              </td>
+            </tr>
+            <tr>
+              <td>Client Company will change requirements</td>
+              <td>SC</td>
+              <td>MODERATE</td>
+              <td>2</td>
+              <td>
+                Clearly establish and document initial scope. Be open to changes
+                but review each change to how it would affect the rest of the
+                project's complexity and/or schedule and decide to accept,
+                reject, or accept with conditions/revisions accordingly
+              </td>
+            </tr>
+            <tr>
+              <td>Client Company staff may be inexperienced with technology</td>
+              <td>PR</td>
+              <td>HIGH</td>
+              <td>3</td>
+              <td>
+                Design the software with intuitiveness as a high priority and
+                minimize complications for users. Collect feedback from intended
+                users on the intuintiveness or complicatedness of software
+              </td>
+            </tr>
+            <tr>
+              <td>Client Company and staff hardware might be weak</td>
+              <td>DE</td>
+              <td>HIGH</td>
+              <td>2</td>
+              <td>
+                Determine current hardware of client company and the minimum
+                requirements for the software to run properly. Design the
+                software to not need a high level of hardware requirement just
+                to run and have/do tests while simulating client hardware
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Member(s) of the team may be unavailable at certain points
+              </td>
+              <td>SR</td>
+              <td>MODERATE</td>
+              <td>2</td>
+              <td>
+                Set a recurring schedule for the team to necessarily allot time
+                to the project. Intentionally design the schedule to have a
+                certain amount of flexibility to account for unexpected
+                happenings. Always keep both the project repository and the rest
+                of the team up-to-date on current progress to allow quick
+                emergency reassignments for high importance components.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Partner company of the client company releases their custom
+                software
+              </td>
+              <td>BU</td>
+              <td>LOW</td>
+              <td>2</td>
+              <td>
+                Maintain regular communication about ongoing developments
+                regarding the alternative software. Design our software solution
+                to specifically occupy a niche unoccupied by the possible
+                alternative software
+              </td>
+            </tr>
+            <tr>
+              <td>Misunderstanding of client company's requirements</td>
+              <td>PD</td>
+              <td>MODERATE</td>
+              <td>2</td>
+              <td>
+                Confirm client requirements with the client before the first
+                line of code is written. Regularly communicate and ask for
+                feedback to ensure alignment of the project to the vision
+              </td>
+            </tr>
+            <tr>
+              <td>Requirements are insufficiently defined</td>
+              <td>PD</td>
+              <td>MODERATE</td>
+              <td>3</td>
+              <td>
+                Conduct thorough interviews with the contact person to get a
+                clear idea of the problems that are being encountered. Identify
+                and clarify any unclear requirements with the contact person.
+                Confer with the contact person regarding the proposed and
+                planned features of the project to confirm alignment to the
+                business' problems.
+              </td>
+            </tr>
+            <tr>
+              <td>Scope of the project becomes too large</td>
+              <td>PS</td>
+              <td>HIGH</td>
+              <td>2</td>
+              <td>
+                Document the absolute minimum features and scope required by the
+                client and have both parties agree on this. Be open but only
+                consider addition/change if the resulting workload estimates
+                remain within schedule (via only minor changes or removing some
+                features in exchange)
+              </td>
+            </tr>
+            <tr>
+              <td>Development tasks take longer than expected</td>
+              <td>SR</td>
+              <td>HIGH</td>
+              <td>2</td>
+              <td>
+                Intentionally design the schedule to have a certain amount of
+                flexibility to account for unexpected happenings as well as the
+                learning curve of the project. Keep track of current project
+                pace and compare it with the set schedule and adjust schedule
+                accordingly while communicating with the client
+              </td>
+            </tr>
+            <tr>
+              <td>Client company primary contact point may be unavailable</td>
+              <td>SC</td>
+              <td>VERY HIGH</td>
+              <td>3</td>
+              <td>
+                Establish a secondary communication line with a different client
+                contact point to serve as a backup in case the primary contact
+                is unavailable
+              </td>
+            </tr>
+            <tr>
+              <td>Company feedback is delayed</td>
+              <td>SC</td>
+              <td>MODERATE</td>
+              <td>2</td>
+              <td>
+                Sense and set in advance meeting times, schedules, and agenda to
+                give both parties ample time to prepare for the meeting but
+                prepare a backup date in case the initial meeting time is not
+                met.
+              </td>
+            </tr>
+            <tr>
+              <td>Team Underestimates Project Complexity</td>
+              <td>TE</td>
+              <td>HIGH</td>
+              <td>2</td>
+              <td>
+                Break large features in the system into smaller more manageable
+                components to be able to get a better estimate of workload.
+                Readjust estimations when new information comes to light and
+                adjust accodringly
+              </td>
+            </tr>
+            <tr>
+              <td>Team Members Have Conflicting Schedules</td>
+              <td>SR</td>
+              <td>MODERATE</td>
+              <td>3</td>
+              <td>
+                Establish a project schedule to be followed by the members of
+                the team, making sure the schedule takes into consideration any
+                unexpected happenings academic or otherwise.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                System Does Not Work Well on Different Mobile Devices/Platforms
+              </td>
+              <td>TE</td>
+              <td>MODERATE</td>
+              <td>2</td>
+              <td>
+                Confirm pc and smartphone platforms being used by the intended
+                users in the company. Design the software to be responsive and
+                work on the platforms of the intended userbase. Include ensuring
+                compatibility in testing with priority going to the most
+                commonly used platforms
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Poor Internet Connectivity Prevents Technicians from Accessing
+                Jobs
+              </td>
+              <td>TE</td>
+              <td>HIGH</td>
+              <td>2</td>
+              <td>
+                Investigate and include a functionality that would allow
+                technicians to be able to access job information locally or
+                without internet. Communicate with the technicians about the
+                specific experiences (location, length of time, frequency) of
+                occasions where internet connectivity is unavailable
+              </td>
+            </tr>
+            <tr>
+              <td>The team misunderstands the existing workflow</td>
+              <td>PR</td>
+              <td>MODERATE</td>
+              <td>2</td>
+              <td>
+                Document the current workflow of the client company and confirm
+                accuracy of understanding. Relate features to specific parts of
+                the current workflow to make understanding the relationship of
+                the current workflow and software being created much easier
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="legend-grid">
+          <div>
+            <strong>Legend:</strong>
+            <ul class="clean-list">
+              <li>PS - Project Size Risk</li>
+              <li>BU - Business Impact Risk</li>
+              <li>SC - Stakeholder Characteristics Risk</li>
+              <li>ST - Staff size and experience</li>
+              <li>PR - Performance risk</li>
+              <li>TE - Technology to Be Built</li>
+              <li>DE - Development environment</li>
+              <li>SR - Schedule risk</li>
+              <li>PD - Process definition</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Impact values:</strong>
+            <ul class="clean-list">
+              <li>1 - Catastrophic</li>
+              <li>2 - Critical</li>
+              <li>3 - Marginal</li>
+              <li>4 - Negligible</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
