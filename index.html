@@ -122,10 +122,7 @@
           .append("svg")
           .attr("width", width)
           .attr("height", height)
-          .style("position", "absolute")
-          .style("top", 0)
-          .style("left", 0)
-          .style("z-index", 1);
+          .style("display", "block");
 
         // Use d3.curveLinear for sharp, literal point-to-point lines
         const lineGenerator = d3
